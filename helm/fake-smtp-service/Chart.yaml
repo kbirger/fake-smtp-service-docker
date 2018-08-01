@@ -1,0 +1,6 @@
+apiVersion: v1
+description: |-
+  Chart for running a fake smtp server
+  https://www.npmjs.com/package/fake-smtp-server
+name: fake-smtp-service
+version: 1.0.0

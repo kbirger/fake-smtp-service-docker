@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "fake-smtp-service.fullname" . }}
+  labels:
+    app: {{ template "fake-smtp-service.name" . }}
+    chart: {{ template "fake-smtp-service.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - nodePort: {{ .Values.service.httpPort }}
+      port: 1080
+      protocol: TCP
+      name: http
+    - nodePort: {{ .Values.service.smtpPort }}
+      port: 1025
+      protocol: TCP
+      name: smtp
+  selector:
+    app: {{ template "fake-smtp-service.name" . }}
+    release: {{ .Release.Name }}
